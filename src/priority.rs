@@ -25,3 +25,69 @@ pub enum Priority {
     // debug-level message
     DEBUG = 7,
 }
+
+#[cfg(test)]
+mod tests {
+    use super::Priority;
+
+    #[derive(Debug, serde::Deserialize)]
+    struct Obj {
+        p: Priority,
+    }
+
+    #[test]
+    fn test_deser_emerg() {
+        let s = r#"{"p":0}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::EMERG);
+    }
+
+    #[test]
+    fn test_deser_alert() {
+        let s = r#"{"p":1}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::ALERT);
+    }
+
+    #[test]
+    fn test_deser_crit() {
+        let s = r#"{"p":2}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::CRIT);
+    }
+
+    #[test]
+    fn test_deser_err() {
+        let s = r#"{"p":3}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::ERR);
+    }
+
+    #[test]
+    fn test_deser_warning() {
+        let s = r#"{"p":4}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::WARNING);
+    }
+
+    #[test]
+    fn test_deser_notice() {
+        let s = r#"{"p":5}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::NOTICE);
+    }
+
+    #[test]
+    fn test_deser_info() {
+        let s = r#"{"p":6}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::INFO);
+    }
+
+    #[test]
+    fn test_deser_debug() {
+        let s = r#"{"p":7}"#;
+        let o: Obj = serde_json::from_str(s).unwrap();
+        assert_eq!(o.p, Priority::DEBUG);
+    }
+}
