@@ -24,7 +24,7 @@ pub struct JournalLog {
     /// this purpose with systemd-id128 new.
     #[serde(rename = "MESSAGE_ID")]
     #[getset(get = "pub")]
-    message_id: u128,
+    message_id: String,
 
     /// A priority value between 0 ("emerg") and 7 ("debug") formatted as a decimal string. This
     /// field is compatible with syslog's priority concept.
