@@ -15,7 +15,7 @@ pub struct JournalLog {
     /// values in that case.
     #[serde(rename = "MESSAGE")]
     #[getset(get = "pub")]
-    message: Vec<u8>,
+    message: String,
 
     /// A 128-bit message identifier ID for recognizing certain message types, if this is
     /// desirable. This should contain a 128-bit ID formatted as a lower-case hexadecimal string,
