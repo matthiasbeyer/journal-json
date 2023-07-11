@@ -1,5 +1,5 @@
-#[derive(serde::Deserialize, Debug, Eq, PartialEq)]
-#[serde(untagged)]
+#[derive(serde_repr::Deserialize_repr, Debug, Eq, PartialEq)]
+#[repr(u8)]
 pub enum Priority {
     // system is unusable
     EMERG = 0,
