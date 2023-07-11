@@ -24,13 +24,13 @@ pub struct JournalLog {
     /// this purpose with systemd-id128 new.
     #[serde(rename = "MESSAGE_ID")]
     #[getset(get = "pub")]
-    message_id: String,
+    message_id: Option<String>,
 
     /// A priority value between 0 ("emerg") and 7 ("debug") formatted as a decimal string. This
     /// field is compatible with syslog's priority concept.
     #[serde(rename = "PRIORITY")]
     #[getset(get = "pub")]
-    priority: Priority,
+    priority: Option<Priority>,
 
     /// The code location generating this message, if known. Contains the source filename, the line
     /// number and the function name.
@@ -54,7 +54,7 @@ pub struct JournalLog {
     /// errno(3) formatted as a decimal string.
     #[serde(rename = "ERRNO")]
     #[getset(get = "pub")]
-    errno: String,
+    errno: Option<String>,
 
     /// A randomized, unique 128-bit ID identifying each runtime cycle of the unit. This is
     /// different from _SYSTEMD_INVOCATION_ID in that it is only used for messages coming from
@@ -62,7 +62,7 @@ pub struct JournalLog {
     /// systemd-related setup).
     #[serde(rename = "INVOCATION_ID")]
     #[getset(get = "pub")]
-    invocation_id: String,
+    invocation_id: Option<String>,
 
     /// A randomized, unique 128-bit ID identifying each runtime cycle of the unit. This is
     /// different from _SYSTEMD_INVOCATION_ID in that it is only used for messages coming from
@@ -70,7 +70,7 @@ pub struct JournalLog {
     /// systemd-related setup).
     #[serde(rename = "USER_INVOCATION_ID")]
     #[getset(get = "pub")]
-    user_invocation_id: String,
+    user_invocation_id: Option<String>,
 
     /// Syslog compatibility fields containing the facility (formatted as decimal string), the
     /// identifier string (i.e. "tag"), the client PID, and the timestamp as specified in the
@@ -83,7 +83,7 @@ pub struct JournalLog {
     /// do so properly formatted, i.e. as numeric integers formatted as decimal strings.
     #[serde(rename = "SYSLOG_FACILITY")]
     #[getset(get = "pub")]
-    syslog_facility: String,
+    syslog_facility: Option<String>,
 
     /// Syslog compatibility fields containing the facility (formatted as decimal string), the
     /// identifier string (i.e. "tag"), the client PID, and the timestamp as specified in the
@@ -96,7 +96,7 @@ pub struct JournalLog {
     /// do so properly formatted, i.e. as numeric integers formatted as decimal strings.
     #[serde(rename = "SYSLOG_IDENTIFIER")]
     #[getset(get = "pub")]
-    syslog_identifier: String,
+    syslog_identifier: Option<String>,
 
     /// Syslog compatibility fields containing the facility (formatted as decimal string), the
     /// identifier string (i.e. "tag"), the client PID, and the timestamp as specified in the
@@ -109,7 +109,7 @@ pub struct JournalLog {
     /// do so properly formatted, i.e. as numeric integers formatted as decimal strings.
     #[serde(rename = "SYSLOG_PID")]
     #[getset(get = "pub")]
-    syslog_pid: String,
+    syslog_pid: Option<String>,
 
     /// Syslog compatibility fields containing the facility (formatted as decimal string), the
     /// identifier string (i.e. "tag"), the client PID, and the timestamp as specified in the
@@ -122,7 +122,7 @@ pub struct JournalLog {
     /// do so properly formatted, i.e. as numeric integers formatted as decimal strings.
     #[serde(rename = "SYSLOG_TIMESTAMP")]
     #[getset(get = "pub")]
-    syslog_timestamp: String,
+    syslog_timestamp: Option<String>,
 
     /// The original contents of the syslog line as received in the syslog datagram. This field is
     /// only included if the MESSAGE= field was modified compared to the original payload or the
@@ -134,19 +134,19 @@ pub struct JournalLog {
     /// identifier, and the message payload in MESSAGE=.
     #[serde(rename = "SYSLOG_RAW")]
     #[getset(get = "pub")]
-    syslog_raw: String,
+    syslog_raw: Option<String>,
 
     /// A documentation URL with further information about the topic of the log message. Tools such
     /// as journalctl will include a hyperlink to a URL specified this way in their output. Should
     /// be an "http:///", "https:///", "file:/", "man:" or "info:" URL.
     #[serde(rename = "DOCUMENTATION")]
     #[getset(get = "pub")]
-    documentation: String,
+    documentation: Option<String>,
 
     /// The numeric thread ID (TID) the log message originates from.
     #[serde(rename = "TID")]
     #[getset(get = "pub")]
-    tid: String,
+    tid: Option<String>,
 
     /// The name of a unit. Used by the system and user managers when logging about specific units.
     ///
@@ -154,7 +154,7 @@ pub struct JournalLog {
     /// includes "UNIT=name.service" or "USER_UNIT=name.service" will be generated.
     #[serde(rename = "UNIT")]
     #[getset(get = "pub")]
-    unit: String,
+    unit: Option<String>,
 
     /// The name of a unit. Used by the system and user managers when logging about specific units.
     ///
@@ -162,7 +162,7 @@ pub struct JournalLog {
     /// includes "UNIT=name.service" or "USER_UNIT=name.service" will be generated.
     #[serde(rename = "USER_UNIT")]
     #[getset(get = "pub")]
-    user_unit: String,
+    user_unit: Option<String>,
 
     /// The process, user, and group ID of the process the journal entry originates from formatted
     /// as a decimal string. Note that entries obtained via "stdout" or "stderr" of forked processes
@@ -170,7 +170,7 @@ pub struct JournalLog {
     /// systemd-journald).
     #[serde(rename = "_PID")]
     #[getset(get = "pub")]
-    pid: String,
+    pid: Option<String>,
 
     /// The process, user, and group ID of the process the journal entry originates from formatted
     /// as a decimal string. Note that entries obtained via "stdout" or "stderr" of forked processes
@@ -178,7 +178,7 @@ pub struct JournalLog {
     /// systemd-journald).
     #[serde(rename = "_UID")]
     #[getset(get = "pub")]
-    uid: String,
+    uid: Option<String>,
 
     /// The process, user, and group ID of the process the journal entry originates from formatted
     /// as a decimal string. Note that entries obtained via "stdout" or "stderr" of forked processes
@@ -186,42 +186,42 @@ pub struct JournalLog {
     /// systemd-journald).
     #[serde(rename = "_GID")]
     #[getset(get = "pub")]
-    gid: String,
+    gid: Option<String>,
 
     /// The name, the executable path, and the command line of the process the journal entry
     /// originates from.
     #[serde(rename = "_COMM")]
     #[getset(get = "pub")]
-    comm: String,
+    comm: Option<String>,
 
     /// The name, the executable path, and the command line of the process the journal entry
     /// originates from.
     #[serde(rename = "_EXE")]
     #[getset(get = "pub")]
-    exe: String,
+    exe: Option<String>,
 
     /// The name, the executable path, and the command line of the process the journal entry
     /// originates from.
     #[serde(rename = "_CMDLINE")]
     #[getset(get = "pub")]
-    cmdline: String,
+    cmdline: Option<String>,
 
     // The effective capabilities(7) of the process the journal entry originates from.
     #[serde(rename = "_CAP_EFFECTIVE")]
     #[getset(get = "pub")]
-    cap_effective: String,
+    cap_effective: Option<String>,
 
     // The session and login UID of the process the journal entry originates from, as maintained by
     // the kernel audit subsystem.
     #[serde(rename = "_AUDIT_SESSION")]
     #[getset(get = "pub")]
-    audit_session: String,
+    audit_session: Option<String>,
 
     // The session and login UID of the process the journal entry originates from, as maintained by
     // the kernel audit subsystem.
     #[serde(rename = "_AUDIT_LOGINUID")]
     #[getset(get = "pub")]
-    audit_loginuid: String,
+    audit_loginuid: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -229,7 +229,7 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_CGROUP")]
     #[getset(get = "pub")]
-    systemd_cgroup: String,
+    systemd_cgroup: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -237,7 +237,7 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_SLICE")]
     #[getset(get = "pub")]
-    systemd_slice: String,
+    systemd_slice: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -245,7 +245,7 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_UNIT")]
     #[getset(get = "pub")]
-    systemd_unit: String,
+    systemd_unit: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -253,7 +253,7 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_USER_UNIT")]
     #[getset(get = "pub")]
-    systemd_user_unit: String,
+    systemd_user_unit: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -261,7 +261,7 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_USER_SLICE")]
     #[getset(get = "pub")]
-    systemd_user_slice: String,
+    systemd_user_slice: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -269,7 +269,7 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_SESSION")]
     #[getset(get = "pub")]
-    systemd_session: String,
+    systemd_session: Option<String>,
 
     // The control group path in the systemd hierarchy, the systemd slice unit name, the systemd
     // unit name, the unit name in the systemd user manager (if any), the systemd session ID (if
@@ -277,41 +277,41 @@ pub struct JournalLog {
     // the journal entry originates from.
     #[serde(rename = "_SYSTEMD_OWNER_UID")]
     #[getset(get = "pub")]
-    systemd_owner_uid: String,
+    systemd_owner_uid: Option<String>,
 
     // The SELinux security context (label) of the process the journal entry originates from.
     #[serde(rename = "_SELINUX_CONTEXT")]
     #[getset(get = "pub")]
-    selinux_context: String,
+    selinux_context: Option<String>,
 
     // The earliest trusted timestamp of the message, if any is known that is different from the
     // reception time of the journal. This is the time in microseconds since the epoch UTC,
     // formatted as a decimal string.
     #[serde(rename = "_SOURCE_REALTIME_TIMESTAMP")]
     #[getset(get = "pub")]
-    source_realtime_timestamp: String,
+    source_realtime_timestamp: Option<String>,
 
     // The kernel boot ID for the boot the message was generated in, formatted as a 128-bit
     // hexadecimal string.
     #[serde(rename = "_BOOT_ID")]
     #[getset(get = "pub")]
-    boot_id: String,
+    boot_id: Option<String>,
 
     // The machine ID of the originating host, as available in machine-id(5).
     #[serde(rename = "_MACHINE_ID")]
     #[getset(get = "pub")]
-    machine_id: String,
+    machine_id: Option<String>,
 
     // The invocation ID for the runtime cycle of the unit the message was generated in, as
     // available to processes of the unit in $INVOCATION_ID (see systemd.exec(5)).
     #[serde(rename = "_SYSTEMD_INVOCATION_ID")]
     #[getset(get = "pub")]
-    systemd_invocation_id: String,
+    systemd_invocation_id: Option<String>,
 
     // The name of the originating host.
     #[serde(rename = "_HOSTNAME")]
     #[getset(get = "pub")]
-    hostname: String,
+    hostname: Option<String>,
 
     // How the entry was received by the journal service. Valid transports are:
     //
@@ -352,5 +352,5 @@ pub struct JournalLog {
     // filesystem.
     #[serde(rename = "_RUNTIME_SCOPE")]
     #[getset(get = "pub")]
-    runtime_scope: String,
+    runtime_scope: Option<String>,
 }
