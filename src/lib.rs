@@ -4,7 +4,7 @@ pub use self::priority::Priority;
 mod transport;
 pub use self::transport::Transport;
 
-#[derive(serde::Deserialize, getset::Getters, Debug)]
+#[derive(serde::Deserialize, serde::Serialize, getset::Getters, Debug)]
 pub struct JournalLog {
     /// The human-readable message string for this entry. This is supposed to be the primary text
     /// shown to the user. It is usually not translated (but might be in some cases), and is not

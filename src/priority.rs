@@ -1,4 +1,4 @@
-#[derive(Debug, Eq, PartialEq)]
+#[derive(serde::Serialize, Debug, Eq, PartialEq)]
 #[repr(u8)]
 pub enum Priority {
     // system is unusable
