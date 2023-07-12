@@ -1,4 +1,4 @@
-#[derive(serde::Deserialize, Debug, Eq, PartialEq)]
+#[derive(serde::Deserialize, serde::Serialize, Debug, Eq, PartialEq)]
 pub enum Transport {
     // for those read from the kernel audit subsystem
     #[serde(rename = "audit")]
